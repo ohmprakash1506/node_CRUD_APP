@@ -11,6 +11,13 @@ pipeline{
         stage('Test'){
             echo 'Testing..'
         }
+        stage('SonarQube analysis') {
+            steps {
+                withSonarQubeEnv('SonnarQube') {
+                    sh "Sonnar-scanner"
+                }
+            }
+        }
         stage('Deploy'){
             steps{
                 echo 'Deployment..'
